@@ -5,7 +5,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-public class ClientDaoImpl implements ClientDaoIntrf{
+public class ProductDaoImpl implements ProductDaoIntrf{
 
     static Connection con = DBconnection.createDBconnection();
     static PreparedStatement statement = null;
@@ -15,15 +15,15 @@ public class ClientDaoImpl implements ClientDaoIntrf{
 
 
     @Override
-    public void addClient( String name, String lastname, int age, double phoneNbr){
-        String query = "insert into client(name, lastname, age, phoneNbr) values(?, ?, ?, ?)";
+    public void addProduct( String name, int qty, int price, String expDate){
+        String query = "insert into product(name, qty, price, expDate) values(?, ?, ?, ?)";
         try {
             PreparedStatement  statement = con.prepareStatement(query);
 
             statement.setString(1, name);
-            statement.setString(2, lastname);
-            statement.setInt(3, age);
-            statement.setDouble(4, phoneNbr);
+            statement.setInt(2, qty);
+            statement.setInt(3, price);
+            statement.setString(4, expDate);
             statement.executeUpdate();
         } catch (SQLException e) {
             throw new RuntimeException(e);
@@ -31,16 +31,16 @@ public class ClientDaoImpl implements ClientDaoIntrf{
     }
 
     @Override
-    public  void updateClientById(int id,String name, String lastname, int age, double phoneNbr){
+    public  void updateProductById(int id, String name, int qty, int price, String expDate){
 
-        String query = "update client set name = ?, lastname = ?, age = ?, phoneNbr = ?, where id = ?";
+        String query = "update product set name = ?, qty = ?, price = ?, expDate = ?, where id = ?";
         try {
             PreparedStatement  statement = con.prepareStatement(query);
 
             statement.setString(1, name);
-            statement.setString(2, lastname);
-            statement.setInt(3, age);
-            statement.setDouble(4, phoneNbr);
+            statement.setInt(2, qty);
+            statement.setInt(3, price);
+            statement.setString(4, expDate);
             statement.setInt(5, id);
             statement.executeUpdate();
         } catch (SQLException e) {
@@ -49,8 +49,8 @@ public class ClientDaoImpl implements ClientDaoIntrf{
     }
 
     @Override
-    public  void deleteClientById(int id){
-        String query = "delete from client where id = ?";
+    public  void deleteProductById(int id){
+        String query = "delete from product where id = ?";
         try {
             statement = con.prepareStatement(query);
             statement.setInt(1, id);
@@ -61,8 +61,8 @@ public class ClientDaoImpl implements ClientDaoIntrf{
     }
 
     @Override
-    public void showClientById(int id) {
-        String query = "select * from client where id = ?";
+    public void showProductById(int id) {
+        String query = "select * from product where id = ?";
         try{
             statement = con.prepareStatement(query);
             statement.setInt(1, id);
@@ -73,3 +73,4 @@ public class ClientDaoImpl implements ClientDaoIntrf{
 
     }
 }
+

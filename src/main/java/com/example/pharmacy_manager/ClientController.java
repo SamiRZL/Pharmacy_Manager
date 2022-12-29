@@ -1,4 +1,4 @@
 package com.example.pharmacy_manager;
 
-public class product {
+public class ClientController {
 }
