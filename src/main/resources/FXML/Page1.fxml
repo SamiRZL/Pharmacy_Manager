@@ -6,10 +6,11 @@
 <?import javafx.scene.layout.VBox?>
 
 <AnchorPane maxHeight="720.0" maxWidth="1044.0" minHeight="720.0" minWidth="1044.0" prefHeight="720.0" prefWidth="1044.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
-   <children>
-      <VBox prefHeight="720.0" prefWidth="216.0" style="-fx-background-color: #00BFA6;" />
-      <TextField accessibleRole="BUTTON" layoutX="40.0" layoutY="122.0" text="Dashboard" />
-      <Label layoutX="31.0" layoutY="72.0" text="Tools" textFill="#3c4048" />
-   </children>
+    <children>
+        <VBox prefHeight="720.0" prefWidth="216.0" style="-fx-background-color: #00BFA6;" />
+        <TextField accessibleRole="BUTTON" layoutX="40.0" layoutY="122.0" text="Dashboard" />
+        <Label layoutX="31.0" layoutY="72.0" text="Tools" textFill="#3c4048" />
+    </children>
 </AnchorPane>
+
 
