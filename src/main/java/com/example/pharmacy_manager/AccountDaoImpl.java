@@ -15,16 +15,16 @@ public class AccountDaoImpl implements AccountDaoIntrf {
 
 
     @Override
-    public void addAccount( String name, String lastname, String job, int age, int phoneNbr){
-        String query = "insert into account(name, lastname, job, age, phoneNbr) values(?, ?, ?, ?, ?)";
+    public void addAccount( String name, String lastname, String job, String username , String password){
+        String query = "insert into account(name, lastname, job, username, password) values(?, ?, ?, ?, ?)";
         try {
             PreparedStatement  statement = con.prepareStatement(query);
 
             statement.setString(1, name);
             statement.setString(2, lastname);
             statement.setString(3, job);
-            statement.setInt(4, age);
-            statement.setInt(5, phoneNbr);
+            statement.setString(4, username);
+            statement.setString(5, password);
             statement.executeUpdate();
         } catch (SQLException e) {
             throw new RuntimeException(e);
@@ -32,7 +32,7 @@ public class AccountDaoImpl implements AccountDaoIntrf {
     }
 
     @Override
-    public  void updateAccountById(int id, String name, String lastname, String job, int age, int phoneNbr){
+    public  void updateAccountById(int id, String name, String lastname, String job, String username, String password){
 
         String query = "update account set name = ?, lastname = ?, job = ?, age = ?, phoneNbr = ?, where id = ?";
         try {
@@ -41,8 +41,8 @@ public class AccountDaoImpl implements AccountDaoIntrf {
             statement.setString(1, name);
             statement.setString(2, lastname);
             statement.setString(3, job);
-            statement.setInt(4, age);
-            statement.setInt(5, phoneNbr);
+            statement.setString(4, username);
+            statement.setString(5, password);
             statement.setInt(6, id);
             statement.executeUpdate();
         } catch (SQLException e) {

@@ -6,16 +6,18 @@ public class Account {
     private String name;
     private String lastname;
     private String job;
-    private int age;
-    private int phoneNbr;
+    private String username;
+    private String password;
 
-    public Account(int id, String name, String lastname, String job, int age, int phoneNbr) {
+
+
+    public Account(int id, String name, String lastname, String job, String username, String password) {
         this.id = id;
         this.name = name;
         this.lastname = lastname;
         this.job = job;
-        this.age = age;
-        this.phoneNbr = phoneNbr;
+        this.username = username;
+        this.password = password;
     }
 
     public Account(){
@@ -53,20 +55,21 @@ public class Account {
     public void setJob(String job) {
         this.job = job;
     }
-
-    public int getAge() {
-        return age;
+    public String getUsername() {
+        return username;
     }
 
-    public void setAge(int age) {
-        this.age = age;
+    public void setUsername(String username) {
+        this.username = username;
     }
 
-    public int getPhoneNbr() {
-        return phoneNbr;
+    public String getPassword() {
+        return password;
     }
 
-    public void setPhoneNbr(int phoneNbr) {
-        this.phoneNbr = phoneNbr;
+    public void setPassword(String password) {
+        this.password = password;
     }
+
+
 }
