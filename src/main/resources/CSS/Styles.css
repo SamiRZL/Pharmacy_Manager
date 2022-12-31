@@ -8,4 +8,10 @@
 }
 .button:pressed
 {
-	-fx-background-color : #90D9D4}
+	-fx-background-color : #90D9D4;
+	}
+	
+.table-view .column-header, 
+.table-view .column-header-background .filler {
+	-fx-background-color: #00BFA6;
+}
