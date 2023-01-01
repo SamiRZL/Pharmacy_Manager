@@ -11,6 +11,8 @@ module com.example.pharmacy_manager {
     requires eu.hansolo.tilesfx;
     requires com.almasb.fxgl.all;
     requires java.sql;
+    requires java.desktop;
+    requires jdk.jconsole;
 
     opens com.example.pharmacy_manager to javafx.fxml;
     exports com.example.pharmacy_manager;
