@@ -12,7 +12,7 @@ import java.io.IOException;
 public class App extends Application {
     @Override
     public void start(Stage stage) throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("src/main/resources/FXML/page1.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("/FXML/page1.fxml"));
         Scene scene = new Scene(root);
         stage.setTitle("PHARMMA");
         stage.setScene(scene);

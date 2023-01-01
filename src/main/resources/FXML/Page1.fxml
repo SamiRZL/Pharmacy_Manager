@@ -181,8 +181,8 @@
                   <TableColumn prefWidth="143.0" text="Name" />
                   <TableColumn prefWidth="143.0" text="Last Name" />
                   <TableColumn prefWidth="143.0" text="Job" />
-                  <TableColumn prefWidth="143.0" text="Age" />
-                  <TableColumn prefWidth="143.0" text="Phone Number" />
+                  <TableColumn prefWidth="143.0" text="Username" />
+                  <TableColumn prefWidth="143.0" text="Password" />
               </columns>
             </TableView>
          </right>
