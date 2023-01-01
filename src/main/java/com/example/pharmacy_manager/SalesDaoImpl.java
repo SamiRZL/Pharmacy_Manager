@@ -5,7 +5,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-public class ProductDaoImpl implements ProductDaoIntrf{
+public class SalesDaoImpl implements SalesDaoIntrf{
 
     static Connection con = DBconnection.createDBconnection();
     static PreparedStatement statement = null;
@@ -15,15 +15,15 @@ public class ProductDaoImpl implements ProductDaoIntrf{
 
 
     @Override
-    public void addProduct( String name, int qty, int price, String expDate){
-        String query = "insert into product(Product_name, Quantity, price, Exp_date) values(?, ?, ?, ?)";
+    public void addSales(String name, int unites, int total, String date){
+        String query = "insert into sales(Product_name, Unites, Total, Date) values(?, ?, ?, ?)";
         try {
             PreparedStatement  statement = con.prepareStatement(query);
 
             statement.setString(1, name);
-            statement.setInt(2, qty);
-            statement.setInt(3, price);
-            statement.setString(4, expDate);
+            statement.setInt(2, unites);
+            statement.setInt(3, total);
+            statement.setString(4, date);
             statement.executeUpdate();
         } catch (SQLException e) {
             throw new RuntimeException(e);
@@ -31,16 +31,16 @@ public class ProductDaoImpl implements ProductDaoIntrf{
     }
 
     @Override
-    public  void updateProductById(int id, String name, int qty, int price, String expDate){
+    public  void updateSalesById(int id,String name, int unites, int total, String date){
 
-        String query = "update product set Product_name = ?, Quantity = ?, Price = ?, Exp_date = ?, where Id_product = ?";
+        String query = "update product set Product_name = ?, Unites = ?, Total = ?, Date = ?, where Id_sale = ?";
         try {
             PreparedStatement  statement = con.prepareStatement(query);
 
             statement.setString(1, name);
-            statement.setInt(2, qty);
-            statement.setInt(3, price);
-            statement.setString(4, expDate);
+            statement.setInt(2, unites);
+            statement.setInt(3, total);
+            statement.setString(4, date);
             statement.setInt(5, id);
             statement.executeUpdate();
         } catch (SQLException e) {
@@ -49,8 +49,8 @@ public class ProductDaoImpl implements ProductDaoIntrf{
     }
 
     @Override
-    public  void deleteProductById(int id){
-        String query = "delete from product where Id_product = ?";
+    public  void deleteSalesById(int id){
+        String query = "delete from sales where Id_sale = ?";
         try {
             statement = con.prepareStatement(query);
             statement.setInt(1, id);
@@ -61,8 +61,8 @@ public class ProductDaoImpl implements ProductDaoIntrf{
     }
 
     @Override
-    public void showProductById(int id) {
-        String query = "select * from product where Id_product = ?";
+    public void showSalesById(int id) {
+        String query = "select * from sales where Id_sale = ?";
         try{
             statement = con.prepareStatement(query);
             statement.setInt(1, id);
@@ -73,4 +73,3 @@ public class ProductDaoImpl implements ProductDaoIntrf{
 
     }
 }
-
