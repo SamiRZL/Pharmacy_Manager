@@ -47,7 +47,7 @@ public class PageLoginController implements Initializable {
 
 
     @FXML
-    public void loginBtn(ActionEvent actionEvent) {
+    public void loginBtnClicked(ActionEvent actionEvent) {
         if (PageLogin.login(edtUsername.getText(), edtPassword.getText())) {
             DISPOSE_ON_CLOSE;
             PageDashboard  dbPage = new PageDashboard();

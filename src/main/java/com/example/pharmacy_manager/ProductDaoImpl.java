@@ -1,11 +1,14 @@
 package com.example.pharmacy_manager;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-public class ProductDaoImpl implements ProductDaoIntrf{
+public class ProductDaoImpl extends Product{
 
     static Connection con = DBconnection.createDBconnection();
     static PreparedStatement statement = null;
@@ -14,9 +17,60 @@ public class ProductDaoImpl implements ProductDaoIntrf{
 
 
 
-    @Override
-    public void addProduct( String name, int qty, int price, String expDate){
-        String query = "insert into product(Product_name, Quantity, price, Exp_date) values(?, ?, ?, ?)";
+
+    public static ObservableList<Product> getProducts(){
+        ObservableList<Product> productTab = FXCollections.observableArrayList();
+
+        String query = "select * from product";
+        try {
+            statement = con.prepareStatement(query);
+            resultSet = statement.executeQuery();
+            while (resultSet.next()){
+                int id = resultSet.getInt("Id_product");
+                String name = resultSet.getString("Product_name");
+                int qty = resultSet.getInt("Quantity");
+                int price = resultSet.getInt("Price");
+                String expDate = resultSet.getString("Exp_date");
+
+                Product prd = new Product(id, name, qty, price, expDate);
+                productTab.add(prd);
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+
+        return productTab;
+    }
+
+
+    public static ObservableList<Product> getProductsById(int id){
+        ObservableList<Product> productSearchedTab = FXCollections.observableArrayList();
+
+        String query = "select * from product where Id_product = ?";
+        try {
+            statement = con.prepareStatement(query);
+            resultSet = statement.executeQuery();
+            while (resultSet.next()){
+                int idProduct = resultSet.getInt("Id_product");
+                String name = resultSet.getString("Product_name");
+                int qty = resultSet.getInt("Quantity");
+                int price = resultSet.getInt("Price");
+                String expDate = resultSet.getString("Exp_date");
+
+                Product prdSr = new Product(idProduct, name, qty, price, expDate);
+                productSearchedTab.add(prdSr);
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+
+        return productSearchedTab;
+    }
+
+
+
+    public static void addProduct( String name, int qty, int price, String expDate){
+        String query = "insert into product(Product_name, Quantity, Price, Exp_date) values(?, ?, ?, ?)";
         try {
             PreparedStatement  statement = con.prepareStatement(query);
 
@@ -30,8 +84,8 @@ public class ProductDaoImpl implements ProductDaoIntrf{
         }
     }
 
-    @Override
-    public  void updateProductById(int id, String name, int qty, int price, String expDate){
+
+    public static void updateProductById(int id, String name, int qty, int price, String expDate){
 
         String query = "update product set Product_name = ?, Quantity = ?, Price = ?, Exp_date = ?, where Id_product = ?";
         try {
@@ -48,8 +102,8 @@ public class ProductDaoImpl implements ProductDaoIntrf{
         }
     }
 
-    @Override
-    public  void deleteProductById(int id){
+
+    public static void deleteProductById(int id){
         String query = "delete from product where Id_product = ?";
         try {
             statement = con.prepareStatement(query);
@@ -60,8 +114,8 @@ public class ProductDaoImpl implements ProductDaoIntrf{
         }
     }
 
-    @Override
-    public void showProductById(int id) {
+
+    public static void showProductById(int id) {
         String query = "select * from product where Id_product = ?";
         try{
             statement = con.prepareStatement(query);
