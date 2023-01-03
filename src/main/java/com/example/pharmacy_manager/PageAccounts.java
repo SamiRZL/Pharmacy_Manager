@@ -1,4 +1,4 @@
 package com.example.pharmacy_manager;
 
-public class PageAccounts {
+public class PageAccounts extends javax.swing.JFrame {
 }

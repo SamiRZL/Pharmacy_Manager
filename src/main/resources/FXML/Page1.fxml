@@ -44,13 +44,7 @@
                <font>
                   <Font name="System Bold" size="15.0" />
                </font>
-               <graphic>
-                  <ImageView fitHeight="32.0" fitWidth="33.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../../../../../../Downloads/user.png" />
-                     </image>
-                  </ImageView>
-               </graphic>
+
             </Button>
             <Button alignment="BASELINE_LEFT" graphicTextGap="10.0" mnemonicParsing="false" prefHeight="59.0" prefWidth="264.0" style="-fx-background-radius: 40;" stylesheets="@../CSS/Styles.css" text="Dashboard" textFill="WHITE">
                <padding>
@@ -137,9 +131,7 @@
                </children>
             </Pane>
             <Button alignment="BASELINE_LEFT" graphicTextGap="10.0" mnemonicParsing="false" prefHeight="59.0" prefWidth="264.0" style="-fx-background-radius: 40;" stylesheets="@../CSS/Styles.css" text="Restore &amp; backup" textFill="WHITE">
-               <graphic>
-                  <FontAwesomeIconView fill="WHITE" glyphName="PERSON" size="15" text="" />
-               </graphic>
+
                <padding>
                   <Insets left="50.0" />
                </padding>
@@ -148,9 +140,7 @@
                </font>
             </Button>
             <Button alignment="BASELINE_LEFT" graphicTextGap="10.0" mnemonicParsing="false" prefHeight="59.0" prefWidth="264.0" style="-fx-background-radius: 40;" stylesheets="@../CSS/Styles.css" text="Help" textFill="WHITE">
-               <graphic>
-                  <FontAwesomeIconView fill="WHITE" glyphName="PERSON" size="15" text="" />
-               </graphic>
+
                <padding>
                   <Insets left="50.0" />
                </padding>

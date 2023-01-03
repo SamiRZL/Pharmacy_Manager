@@ -3,7 +3,7 @@ package com.example.pharmacy_manager;
 import java.sql.*;
 
 
-public class PageLogin {
+public class PageLogin extends javax.swing.JFrame{
     static Connection con = DBconnection.createDBconnection();
     static PreparedStatement statement = null;
     static ResultSet resultSet = null;
