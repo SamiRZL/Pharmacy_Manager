@@ -101,10 +101,7 @@ public class ClientController implements Initializable {
             clearFields();
         }
 
-        @FXML
-        public void searchClient(ActionEvent actionEvent){
 
-        }
 
 
         public void showClients(){

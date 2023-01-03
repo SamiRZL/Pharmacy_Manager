@@ -9,11 +9,14 @@ import javafx.scene.control.TextField;
 import javax.swing.*;
 import javax.swing.SwingUtilities;
 
+import java.net.URL;
+import java.util.ResourceBundle;
+
 import static com.example.pharmacy_manager.PageLogin.jobAccount;
 import static javax.swing.JFrame.*;
 
 
-public class PageLoginController implements Initializable {
+public  class PageLoginController implements Initializable {
 
 
     @FXML
@@ -49,17 +52,22 @@ public class PageLoginController implements Initializable {
     @FXML
     public void loginBtnClicked(ActionEvent actionEvent) {
         if (PageLogin.login(edtUsername.getText(), edtPassword.getText())) {
-            DISPOSE_ON_CLOSE;
+
             PageDashboard  dbPage = new PageDashboard();
-            dbPage.setVisible(true);
+
             if (jobAccount == "vendor") {
 
             }
         } else {
             errorLabel.setText("Username or password entered is wrong");
-            edtUsername.setText(" ");
-            edtPassword.setText(" ");
+            edtUsername.setText(null);
+            edtPassword.setText(null);
         }
+
+    }
+
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
 
     }
 }
