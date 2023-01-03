@@ -21,8 +21,8 @@ public class App extends Application {
 
     public static void main(String[] args) {
 
-        PageLogin log = new PageLogin();
-        
+        LoginPage log = new LoginPage();
+
 
         launch();
     }
