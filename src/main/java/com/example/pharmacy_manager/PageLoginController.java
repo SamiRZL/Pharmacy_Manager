@@ -7,8 +7,10 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javax.swing.*;
+import javax.swing.SwingUtilities;
 
 import static com.example.pharmacy_manager.PageLogin.jobAccount;
+import static javax.swing.JFrame.*;
 
 
 public class PageLoginController implements Initializable {
@@ -44,11 +46,10 @@ public class PageLoginController implements Initializable {
 
 
 
-
     @FXML
-    public void loginBtn(ActionEvent actionEvent) {
+    public void loginBtnClicked(ActionEvent actionEvent) {
         if (PageLogin.login(edtUsername.getText(), edtPassword.getText())) {
-            dispose();
+            DISPOSE_ON_CLOSE;
             PageDashboard  dbPage = new PageDashboard();
             dbPage.setVisible(true);
             if (jobAccount == "vendor") {
@@ -62,4 +63,3 @@ public class PageLoginController implements Initializable {
 
     }
 }
-

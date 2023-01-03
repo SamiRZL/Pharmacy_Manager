@@ -1,24 +1,74 @@
 package com.example.pharmacy_manager;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-public class ClientDaoImpl implements ClientDaoIntrf{
+public class ClientDaoImpl extends Client {
 
     static Connection con = DBconnection.createDBconnection();
     static PreparedStatement statement = null;
     static ResultSet resultSet = null;
 
 
+    public static ObservableList<Client> getClients() {
+        ObservableList<Client> clientTab = FXCollections.observableArrayList();
 
-
-    @Override
-    public void addClient( String name, String lastname, int age, double phoneNbr){
-        String query = "insert into client(name, lastname, age, phoneNbr) values(?, ?, ?, ?)";
+        String query = "select * from client";
         try {
-            PreparedStatement  statement = con.prepareStatement(query);
+            statement = con.prepareStatement(query);
+            resultSet = statement.executeQuery();
+            while (resultSet.next()) {
+                int id = resultSet.getInt("Id_client");
+                String name = resultSet.getString("Name");
+                String lastname = resultSet.getString("LastName");
+                int age = resultSet.getInt("Age");
+                int phoneNbr = resultSet.getInt("Phone_nbr");
+
+                Client clt = new Client(id, name, lastname, age, phoneNbr);
+                clientTab.add(clt);
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+
+        return clientTab;
+    }
+
+
+    public static ObservableList<Client> getClientsById(int id) {
+        ObservableList<Client> clientSearchedTab = FXCollections.observableArrayList();
+
+        String query = "select * from client where Id_client = ?";
+        try {
+            statement = con.prepareStatement(query);
+            resultSet = statement.executeQuery();
+            while (resultSet.next()) {
+                int idClient = resultSet.getInt("Id_client");
+                String name = resultSet.getString("Name");
+                String lastname = resultSet.getString("LastName");
+                int age = resultSet.getInt("Age");
+                int phoneNbr = resultSet.getInt("Phone_nbr");
+
+                Client cltSr = new Client(idClient, name, lastname, age, phoneNbr);
+                clientSearchedTab.add(cltSr);
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+
+        return clientSearchedTab;
+    }
+
+
+    public static void addClient(String name, String lastname, int age, double phoneNbr) {
+        String query = "insert into client(Name, LastName, Age, Phone_nbr) values(?, ?, ?, ?)";
+        try {
+            PreparedStatement statement = con.prepareStatement(query);
 
             statement.setString(1, name);
             statement.setString(2, lastname);
@@ -30,12 +80,12 @@ public class ClientDaoImpl implements ClientDaoIntrf{
         }
     }
 
-    @Override
-    public  void updateClientById(int id,String name, String lastname, int age, double phoneNbr){
 
-        String query = "update client set name = ?, lastname = ?, age = ?, phoneNbr = ?, where id = ?";
+    public static void updateClientById(int id, String name, String lastname, int age, double phoneNbr) {
+
+        String query = "update client set Name = ?, LastName = ?, Age = ?, Phone_nbr = ?, where Id_client = ?";
         try {
-            PreparedStatement  statement = con.prepareStatement(query);
+            PreparedStatement statement = con.prepareStatement(query);
 
             statement.setString(1, name);
             statement.setString(2, lastname);
@@ -48,9 +98,9 @@ public class ClientDaoImpl implements ClientDaoIntrf{
         }
     }
 
-    @Override
-    public  void deleteClientById(int id){
-        String query = "delete from client where id = ?";
+
+    public static void deleteClientById(int id) {
+        String query = "delete from client where Id_client = ?";
         try {
             statement = con.prepareStatement(query);
             statement.setInt(1, id);
@@ -59,17 +109,6 @@ public class ClientDaoImpl implements ClientDaoIntrf{
             throw new RuntimeException(e);
         }
     }
-
-    @Override
-    public void showClientById(int id) {
-        String query = "select * from client where id = ?";
-        try{
-            statement = con.prepareStatement(query);
-            statement.setInt(1, id);
-            statement.executeUpdate();
-        } catch (SQLException e){
-            throw new RuntimeException(e);
-        }
-
-    }
 }
+
+
