@@ -1,6 +1,4 @@
 package com.example.pharmacy_manager;
-
-
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -8,11 +6,12 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.util.Objects;
 
 public class App extends Application {
     @Override
     public void start(Stage stage) throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("/FXML/page1.fxml"));
+        Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/FXML/Page1.fxml")));
         Scene scene = new Scene(root);
         stage.setTitle("PHARMMA");
         stage.setScene(scene);
@@ -21,9 +20,6 @@ public class App extends Application {
 
     public static void main(String[] args) {
 
-        LoginPage log = new LoginPage();
-        log.show();
 
-        launch();
     }
 }

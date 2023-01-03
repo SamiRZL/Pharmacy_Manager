@@ -7,12 +7,11 @@ module com.example.pharmacy_manager {
     requires com.dlsc.formsfx;
 
     requires org.kordamp.ikonli.javafx;
-    requires org.kordamp.bootstrapfx.core;
-    requires eu.hansolo.tilesfx;
+     opens com.example.pharmacy_manager to javafx.fxml;
+    exports com.example.pharmacy_manager;
+   requires org.kordamp.bootstrapfx.core;
     requires com.almasb.fxgl.all;
     requires java.sql;
-	requires javafx.graphics;
-
-    opens com.example.pharmacy_manager to javafx.fxml;
-    exports com.example.pharmacy_manager;
-}
+    requires java.desktop;
+    requires jdk.jconsole;
+    }
